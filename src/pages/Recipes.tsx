@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { RecipeItem } from '../types/RecipeItem';
 import "./../styles/recipes.css";
-import { Col, Empty, Row } from 'antd';
+import { Col, Empty, FloatButton, Row, Space } from 'antd';
 import RecipePreview from '../components/RecipePreview';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+import FullRecipe from './FullRecipe';
 
 interface RecipesProps{
     recipes: RecipeItem[]
@@ -24,8 +26,9 @@ const Recipes: React.FC<RecipesProps> = (data) =>{
             </div>
         </div>
         <div className='full-recipe-container'>
-            {currentRecipe ? <></> : <Empty />}
+            {currentRecipe ? <FullRecipe recipe={currentRecipe} /> :  <Empty description={false}  imageStyle={{ height:"30rem"}} /> }
         </div>
+        <FloatButton href='/new' type='primary' icon={<AiOutlinePlusCircle />} style={{height:"70px", width:"70px", boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px"}} />
     </div>
 }
 

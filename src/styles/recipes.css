@@ -16,9 +16,7 @@
 .recipes-list-container{
     border-radius: 4px;
     background-color: white;
-    padding:2rem;
-    /* overflow-x: auto; */
-    overflow: hidden;
+    padding:1rem;
     width: 26%;
     margin:2%;
     opacity: 0.9;
@@ -32,8 +30,9 @@
     margin:2%;
     opacity: 0.9;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: auto;
+    padding:1rem
 }
 
 .recipes-list{
@@ -41,3 +40,32 @@
     height:28rem;
     margin-top: 2rem;
 }
+p{
+    width: 100%;
+}
+@media screen and (max-width: 900px) {
+    .recipes{
+        flex-direction: column;
+        overflow-y: scroll;
+        bottom: auto;
+        width: 100%;
+        background-size:cover;
+overflow-x: hidden;
+padding: 1rem;
+align-items: center;
+
+    }
+    
+.recipes-list-container{
+    width: 80%;
+    margin:2%;
+    opacity: 0.9;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+
+.full-recipe-container{
+    width: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+  }
