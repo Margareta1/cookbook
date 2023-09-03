@@ -5,23 +5,22 @@ import { Col, Empty, FloatButton, Row, Space } from 'antd';
 import RecipePreview from '../components/RecipePreview';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import FullRecipe from './FullRecipe';
-
 interface RecipesProps{
-    recipes: RecipeItem[]
 }
 
 
-const Recipes: React.FC<RecipesProps> = (data) =>{
+const Recipes: React.FC<RecipesProps> = () =>{
     const [currentRecipe, setCurrentRecipe] = useState<RecipeItem>();
+    const temp: RecipeItem[] = [];
     const expandHandler = (k:number)=>{
-        setCurrentRecipe(data.recipes.find(j=> j.key==k))
+        setCurrentRecipe(temp.find(j=> j.key==k))
     }
 
     return <div className='recipes'>
         <div className='recipes-list-container'>
             <div><h2>Pick a recipe. Happy cooking!</h2>
             <div className='recipes-list'>
-                {data.recipes.map(r=> <RecipePreview recipe={r} key={r.key} expandHandler={expandHandler} />)}
+                {temp.map(r=> <RecipePreview recipe={r} key={r.key} expandHandler={expandHandler} />)}
             </div>
             </div>
         </div>
