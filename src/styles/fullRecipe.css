@@ -1,0 +1,21 @@
+.img-container{
+    width: 90%;
+display: inline-block;
+
+}
+.meal-img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+}
+
+.ingredients-list, .steps-list{
+text-align: left;
+margin-left: 3rem;
+}
+
+.h3-align{
+    text-align: left;
+    margin-left: 3rem;
+}
