@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import NavigationBar from './components/NavigationBar';
@@ -6,15 +5,16 @@ import AddRecipe from './pages/AddRecipe';
 import Recipes from './pages/Recipes';
 import './styles/app.css'
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { RecipeItem } from './types/RecipeItem';
-import RecipeContext from './store/recipes-context';
+import { RecipeContextProvider } from './store/recipes-context';
 
 
 function App() {
   
   return (
     <div className="App">
+      
       <QueryClientProvider client={new QueryClient}>
+        <RecipeContextProvider>
       <BrowserRouter>
       <NavigationBar />
       <Routes>
@@ -23,6 +23,7 @@ function App() {
         <Route path='/recipes' element={<Recipes />} />
       </Routes>
       </BrowserRouter>
+      </RecipeContextProvider>
       </QueryClientProvider>
     </div>
   );

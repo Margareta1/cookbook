@@ -3,12 +3,15 @@ import { RecipeItem } from "../types/RecipeItem";
 import { Button, Form, FormInstance, Input, InputNumber } from "antd";
 import "./../styles/addRecipe.css";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { useRecipeContext } from "../store/recipes-context";
 
 interface AddRecipeProps {
 }
 
 const AddRecipe: React.FC<AddRecipeProps> = () => {
     const formRef = useRef<FormInstance>(null);
+    const cont = useRecipeContext();
+
   const layout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 20 },
@@ -29,7 +32,7 @@ const AddRecipe: React.FC<AddRecipeProps> = () => {
         ingredients: values.ingredients,
         cookingSteps: values.cookingSteps
     }
-    //add update logic
+    cont.addRec(newItem);
     formRef.current?.resetFields();
   };
 

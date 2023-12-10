@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import { createContext, createElement, useContext, useState } from "react";
+import { RecipeItem } from "../types/RecipeItem";
 
 const recipes = [
     {
@@ -32,9 +33,23 @@ const recipes = [
       "cookingSteps": ["Heat the oil in a large skillet or wok over medium-high heat. Add the chicken and cook until browned on all sides.", "Add the onion, red bell pepper, and green bell pepper to the skillet. Cook until softened, about 5 minutes.", "Stir in the diced tomatoes, chicken broth, soy sauce, garlic powder, and black pepper. Bring to a boil, then reduce heat and simmer for 10 minutes, or until the chicken is cooked through."],
     },
 ]
+type RecipeContextProps ={
+  rec: RecipeItem[];
+  addRec: (v:RecipeItem)=>void;
+}
+const RecipeContext = createContext<RecipeContextProps>({rec:[], addRec:()=>{}});
 
-const RecipeContext = createContext({
-    initialRecipes: recipes,
-    onAddRecipe: () => {}
-});
-export default RecipeContext;
+interface RecipeContextProviderProps{
+  children: React.ReactNode;
+}
+
+export const RecipeContextProvider: React.FC<RecipeContextProviderProps> = ({children}) =>{
+  const [recs, addRecipes] = useState<RecipeItem[]>(recipes); 
+  const addNewRecipe = (val:RecipeItem)=>{
+    addRecipes([...recs, val]);
+  }
+  const contextValue:RecipeContextProps = {rec:recs, addRec:addNewRecipe};
+  
+  return createElement(RecipeContext.Provider,{value:contextValue}, children)
+}
+export const useRecipeContext = () => useContext(RecipeContext);
